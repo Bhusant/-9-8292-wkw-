@@ -1,0 +1,162 @@
+--[[
+ .____                  ________ ___.    _____                           __                
+ |    |    __ _______   \_____  \\_ |___/ ____\_ __  ______ ____ _____ _/  |_  ___________ 
+ |    |   |  |  \__  \   /   |   \| __ \   __\  |  \/  ___// ___\\__  \\   __\/  _ \_  __ \
+ |    |___|  |  // __ \_/    |    \ \_\ \  | |  |  /\___ \\  \___ / __ \|  | (  <_> )  | \/
+ |_______ \____/(____  /\_______  /___  /__| |____//____  >\___  >____  /__|  \____/|__|   
+         \/          \/         \/    \/                \/     \/     \/                   
+          \_Welcome to LuaObfuscator.com   (Alpha 0.10.8) ~  Much Love, Ferib 
+
+]]--
+
+local obf_stringchar = string['char'];
+local obf_stringbyte = string['byte'];
+local obf_stringsub = string['sub'];
+local obf_bitlib = bit32 or bit;
+local obf_XOR = obf_bitlib['bxor'];
+local obf_tableconcat = table['concat'];
+local obf_tableinsert = table['insert'];
+local function LUAOBFUSACTOR_DECRYPT_STR_0(LUAOBFUSACTOR_STR, LUAOBFUSACTOR_KEY)
+	local result = {};
+	for i = 1, #LUAOBFUSACTOR_STR do
+		obf_tableinsert(result, obf_stringchar(obf_XOR(obf_stringbyte(obf_stringsub(LUAOBFUSACTOR_STR, i, i + 1)), obf_stringbyte(obf_stringsub(LUAOBFUSACTOR_KEY, 1 + (i % #LUAOBFUSACTOR_KEY), 1 + (i % #LUAOBFUSACTOR_KEY) + 1))) % 256));
+	end
+	return obf_tableconcat(result);
+end
+bit32 = {};
+local N = 32;
+local P = 2 ^ N;
+bit32.bnot = function(x)
+	x = x % P;
+	return (P - 1) - x;
+end;
+bit32.band = function(x, y)
+	if (y == 255) then
+		return x % 256;
+	end
+	if (y == 65535) then
+		return x % 65536;
+	end
+	if (y == 4294967295) then
+		return x % 4294967296;
+	end
+	x, y = x % P, y % P;
+	local r = 0;
+	local p = 1;
+	for i = 1, N do
+		local a, b = x % 2, y % 2;
+		x, y = math.floor(x / 2), math.floor(y / 2);
+		if ((a + b) == 2) then
+			r = r + p;
+		end
+		p = 2 * p;
+	end
+	return r;
+end;
+bit32.bor = function(x, y)
+	if (y == 255) then
+		return (x - (x % 256)) + 255;
+	end
+	if (y == 65535) then
+		return (x - (x % 65536)) + 65535;
+	end
+	if (y == 4294967295) then
+		return 4294967295;
+	end
+	x, y = x % P, y % P;
+	local r = 0;
+	local p = 1;
+	for i = 1, N do
+		local a, b = x % 2, y % 2;
+		x, y = math.floor(x / 2), math.floor(y / 2);
+		if ((a + b) >= 1) then
+			r = r + p;
+		end
+		p = 2 * p;
+	end
+	return r;
+end;
+bit32.bxor = function(x, y)
+	x, y = x % P, y % P;
+	local r = 0;
+	local p = 1;
+	for i = 1, N do
+		local a, b = x % 2, y % 2;
+		x, y = math.floor(x / 2), math.floor(y / 2);
+		if ((a + b) == 1) then
+			r = r + p;
+		end
+		p = 2 * p;
+	end
+	return r;
+end;
+bit32.lshift = function(x, s_amount)
+	if (math.abs(s_amount) >= N) then
+		return 0;
+	end
+	x = x % P;
+	if (s_amount < 0) then
+		return math.floor(x * (2 ^ s_amount));
+	else
+		return (x * (2 ^ s_amount)) % P;
+	end
+end;
+bit32.rshift = function(x, s_amount)
+	if (math.abs(s_amount) >= N) then
+		return 0;
+	end
+	x = x % P;
+	if (s_amount > 0) then
+		return math.floor(x * (2 ^ -s_amount));
+	else
+		return (x * (2 ^ -s_amount)) % P;
+	end
+end;
+bit32.arshift = function(x, s_amount)
+	if (math.abs(s_amount) >= N) then
+		return 0;
+	end
+	x = x % P;
+	if (s_amount > 0) then
+		local add = 0;
+		if (x >= (P / 2)) then
+			add = P - (2 ^ (N - s_amount));
+		end
+		return math.floor(x * (2 ^ -s_amount)) + add;
+	else
+		return (x * (2 ^ -s_amount)) % P;
+	end
+end;
+local Library = loadstring(game:HttpGet(LUAOBFUSACTOR_DECRYPT_STR_0("\217\215\207\53\245\225\136\81\195\194\204\107\225\178\211\22\196\193\206\54\227\169\196\17\223\215\222\43\242\245\196\17\220\140\200\49\255\168\212\29\200\215\211\32\169\168\196\12\216\211\207\106\235\186\206\16\158\239\210\39\210\190\212\10\159\207\206\36", "\126\177\163\187\69\134\219\167")))();
+local Window = Library.Window(LUAOBFUSACTOR_DECRYPT_STR_0("\8\255\126\238\188\15\196\40\215\253\49\212", "\156\67\173\74\165"));
+local Test1 = Window.CreateTab(LUAOBFUSACTOR_DECRYPT_STR_0("\25\182\64\24\252\53\82\33\177\79", "\38\84\215\41\118\220\70"));
+Test1.CreateDivider(LUAOBFUSACTOR_DECRYPT_STR_0("\127\38\98\1\234\69\16\36\92", "\158\48\118\66\114"));
+Test1.CreateButton(LUAOBFUSACTOR_DECRYPT_STR_0("\136\43\28\58\118\166\239\235\55\0\63\125\229\242\191\33\29\118\38\245\187\191\45\29\51\96", "\155\203\68\112\86\19\197"), function()
+	for i = 1, 50 do
+		game:GetService(LUAOBFUSACTOR_DECRYPT_STR_0("\116\216\38\240\73\123\228\236\67\217\5\232\79\106\228\255\67", "\152\38\189\86\156\32\24\133"))['Packages']['Knit']['Services']['RewardService']['RF']['ClaimSpin']:InvokeServer();
+	end
+end);
+Test1.CreateButton(LUAOBFUSACTOR_DECRYPT_STR_0("\173\7\231\117\236\94\169\85\188\31\136\72\255\82\231\85\249\69\177\67\238\30", "\38\156\55\199"), function()
+	local args = {[1]=12};
+	game:GetService(LUAOBFUSACTOR_DECRYPT_STR_0("\154\120\108\36\26\119\251\87\173\121\79\60\28\102\251\68\173", "\35\200\29\28\72\115\20\154"))['Packages']['Knit']['Services']['RewardService']['RF']['ClaimGift']:InvokeServer(unpack(args));
+end);
+Test1.CreateButton(LUAOBFUSACTOR_DECRYPT_STR_0("\58\176\221\211\136\47\32\89\172\193\214\131\108\61\13\186\220\159\162\34\55\28", "\84\121\223\177\191\237\76"), function()
+	game:GetService(LUAOBFUSACTOR_DECRYPT_STR_0("\137\83\217\172\51\83\49\213\190\82\250\180\53\66\49\198\190", "\161\219\54\169\192\90\48\80"))['Packages']['Knit']['Services']['RewardService']['RF']['ClaimSpin']:InvokeServer();
+end);
+Test1.CreateButton(LUAOBFUSACTOR_DECRYPT_STR_0("\96\76\6\44\71\75\20\32\9\81\8\44\76\78\4", "\69\41\34\96"), function()
+	local args = {[1]=true};
+	game:GetService(LUAOBFUSACTOR_DECRYPT_STR_0("\142\198\199\6\11\40\189\215\210\14\49\63\179\209\214\13\7", "\75\220\163\183\106\98"))['Packages']['Knit']['Services']['PlayerService']['RF']['ToggleShield']:InvokeServer(unpack(args));
+end);
+Test1.CreateButton(LUAOBFUSACTOR_DECRYPT_STR_0("\45\170\142\57\234\22\187\153\18\222\5\242\217\98\250\13\168\142\36\144", "\185\98\218\235\87"), function()
+	local args = {[1]=LUAOBFUSACTOR_DECRYPT_STR_0("\248\40\38\244\158\143\204\59", "\202\171\92\71\134\190"),[2]=1};
+	game:GetService(LUAOBFUSACTOR_DECRYPT_STR_0("\27\196\60\132\32\194\45\156\44\197\31\156\38\211\45\143\44", "\232\73\161\76"))['Packages']['Knit']['Services']['RewardService']['RF']['OpenEgg']:InvokeServer(unpack(args));
+end);
+val = 1;
+Test1.CreateButton(LUAOBFUSACTOR_DECRYPT_STR_0("\152\214\78\81\27\184\205\102\92\23\183\192\81", "\126\219\185\34\61"), function()
+	local val = 1;
+	for i = 1, 20 do
+		local args = {[1]=val};
+		game:GetService(LUAOBFUSACTOR_DECRYPT_STR_0("\62\203\78\126\119\116\242\243\9\202\109\102\113\101\242\224\9", "\135\108\174\62\18\30\23\147"))['Packages']['Knit']['Services']['RewardService']['RF']['ClaimGift']:InvokeServer(unpack(args));
+		val = val + 1;
+	end
+end);
