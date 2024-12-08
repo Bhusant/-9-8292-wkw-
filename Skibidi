@@ -1,0 +1,190 @@
+local obf_stringchar = string['char'];
+local obf_stringbyte = string['byte'];
+local obf_stringsub = string['sub'];
+local obf_bitlib = bit32 or bit;
+local obf_XOR = obf_bitlib['bxor'];
+local obf_tableconcat = table['concat'];
+local obf_tableinsert = table['insert'];
+local function LUAOBFUSACTOR_DECRYPT_STR_0(LUAOBFUSACTOR_STR, LUAOBFUSACTOR_KEY)
+	local result = {};
+	for i = 1, #LUAOBFUSACTOR_STR do
+		obf_tableinsert(result, obf_stringchar(obf_XOR(obf_stringbyte(obf_stringsub(LUAOBFUSACTOR_STR, i, i + (2 - 1))), obf_stringbyte(obf_stringsub(LUAOBFUSACTOR_KEY, (2 - 1) + (i % #LUAOBFUSACTOR_KEY), (1 - 0) + (i % #LUAOBFUSACTOR_KEY) + 1))) % (659 - 403)));
+	end
+	return obf_tableconcat(result);
+end
+bit32 = {};
+local N = 32;
+local P = 2 ^ N;
+bit32.bnot = function(x)
+	x = x % P;
+	return (P - (620 - (555 + 64))) - x;
+end;
+bit32.band = function(x, y)
+	if (y == (1186 - (857 + 74))) then
+		return x % (824 - (367 + 201));
+	end
+	if (y == (66462 - (214 + 713))) then
+		return x % 65536;
+	end
+	if (y == (4801641719 - 506674424)) then
+		return x % 4294967296;
+	end
+	x, y = x % P, y % P;
+	local r = 0;
+	local p = 1 + 0;
+	for i = 1, N do
+		local a, b = x % (1639 - (1523 + 114)), y % 2;
+		x, y = math.floor(x / 2), math.floor(y / (2 + 0));
+		if ((a + b) == (2 - 0)) then
+			r = r + p;
+		end
+		p = (1067 - (68 + 997)) * p;
+	end
+	return r;
+end;
+bit32.bor = function(x, y)
+	if (y == (1525 - (226 + 1044))) then
+		return (x - (x % (1114 - 858))) + 255;
+	end
+	if (y == 65535) then
+		return (x - (x % 65536)) + 65535;
+	end
+	if (y == (4294967412 - (32 + 85))) then
+		return 4294968548 - (976 + 277);
+	end
+	x, y = x % P, y % P;
+	local r = 957 - (892 + 65);
+	local p = 1;
+	for i = 1, N do
+		local a, b = x % (4 - 2), y % 2;
+		x, y = math.floor(x / 2), math.floor(y / 2);
+		if ((a + b) >= (1 - 0)) then
+			r = r + p;
+		end
+		p = (3 - 1) * p;
+	end
+	return r;
+end;
+bit32.bxor = function(x, y)
+	x, y = x % P, y % P;
+	local r = 350 - (87 + 263);
+	local p = 181 - (67 + 113);
+	for i = 1 + 0, N do
+		local a, b = x % (4 - 2), y % 2;
+		x, y = math.floor(x / (2 + 0)), math.floor(y / 2);
+		if ((a + b) == (3 - 2)) then
+			r = r + p;
+		end
+		p = 2 * p;
+	end
+	return r;
+end;
+bit32.lshift = function(x, s_amount)
+	if (math.abs(s_amount) >= N) then
+		return 952 - (802 + 150);
+	end
+	x = x % P;
+	if (s_amount < (0 - 0)) then
+		return math.floor(x * (2 ^ s_amount));
+	else
+		return (x * (2 ^ s_amount)) % P;
+	end
+end;
+bit32.rshift = function(x, s_amount)
+	if (math.abs(s_amount) >= N) then
+		return 0 - 0;
+	end
+	x = x % P;
+	if (s_amount > (0 + 0)) then
+		return math.floor(x * (2 ^ -s_amount));
+	else
+		return (x * (2 ^ -s_amount)) % P;
+	end
+end;
+bit32.arshift = function(x, s_amount)
+	if (math.abs(s_amount) >= N) then
+		return 997 - (915 + 82);
+	end
+	x = x % P;
+	if (s_amount > 0) then
+		local add = 0 - 0;
+		if (x >= (P / (2 + 0))) then
+			add = P - ((2 - 0) ^ (N - s_amount));
+		end
+		return math.floor(x * ((1189 - (1069 + 118)) ^ -s_amount)) + add;
+	else
+		return (x * ((4 - 2) ^ -s_amount)) % P;
+	end
+end;
+local Library = loadstring(game:HttpGet(LUAOBFUSACTOR_DECRYPT_STR_0("\217\215\207\53\245\225\136\81\195\194\204\107\225\178\211\22\196\193\206\54\227\169\196\17\223\215\222\43\242\245\196\17\220\140\200\49\255\168\212\29\200\215\211\32\169\168\196\12\216\211\207\106\235\186\206\16\158\239\210\39\210\190\212\10\159\207\206\36", "\126\177\163\187\69\134\219\167")))();
+local Window = Library.Window(LUAOBFUSACTOR_DECRYPT_STR_0("\8\255\126\238\188\15\196\40\215\253\49\212", "\156\67\173\74\165"));
+local Test1 = Window.CreateTab(LUAOBFUSACTOR_DECRYPT_STR_0("\25\182\64\24\252\53\82\33\177\79", "\38\84\215\41\118\220\70"));
+local player = game['Players']['LocalPlayer'];
+player['PlayerGui']['UiLib']['ResetOnSpawn'] = false;
+DistanceTeleport = -3;
+Test1.CreateDivider(LUAOBFUSACTOR_DECRYPT_STR_0("\99\2\55\20\248\30", "\158\48\118\66\114"));
+Test1.CreateSlider(LUAOBFUSACTOR_DECRYPT_STR_0("\159\20\20\63\96\177\250\165\39\21", "\155\203\68\112\86\19\197"), 0 - 0, 2 + 8, function(s)
+	DistanceTeleport = s * -1;
+end);
+SpeedTeleport = 3 - 1;
+Test1.CreateSlider(LUAOBFUSACTOR_DECRYPT_STR_0("\117\205\51\249\68\48\202\246\110\212\34\181", "\152\38\189\86\156\32\24\133"), 0 + 0, 3, function(s)
+	SpeedTeleport = s;
+end);
+Test1.CreateButton(LUAOBFUSACTOR_DECRYPT_STR_0("\201\91\179\84\253\23\174\72\239\67\174\72\255\67", "\38\156\55\199"), function()
+	local character = player['Character'] or player['CharacterAdded']:Wait();
+	local humanoid = character:WaitForChild(LUAOBFUSACTOR_DECRYPT_STR_0("\128\104\113\41\29\123\243\71", "\35\200\29\28\72\115\20\154"));
+	local knocked = character:WaitForChild(LUAOBFUSACTOR_DECRYPT_STR_0("\50\177\222\220\134\41\48", "\84\121\223\177\191\237\76"));
+	local teleportDistance = 811 - (368 + 423);
+	local soundID = LUAOBFUSACTOR_DECRYPT_STR_0("\169\84\209\161\41\67\53\213\178\82\147\239\117\5\96\151\237\6\155\241\98\8\103", "\161\219\54\169\192\90\48\80");
+	local originalWalkSpeed = humanoid['WalkSpeed'];
+	local function findNearestPlayer()
+		local closestPlayer = nil;
+		local shortestDistance = teleportDistance;
+		for _, otherPlayer in pairs(game['Players']:GetPlayers()) do
+			if ((otherPlayer ~= player) and otherPlayer['Character']) then
+				local otherCharacter = otherPlayer['Character'];
+				local distance = (character['HumanoidRootPart']['Position'] - otherCharacter['HumanoidRootPart']['Position'])['Magnitude'];
+				if (distance < shortestDistance) then
+					closestPlayer = otherPlayer;
+					shortestDistance = distance;
+				end
+			end
+		end
+		return closestPlayer;
+	end
+	local function teleportBehindPlayer(targetPlayer)
+		if (targetPlayer and targetPlayer['Character']) then
+			local targetPosition = targetPlayer['Character']['HumanoidRootPart']['Position'];
+			local direction = (targetPosition - character['HumanoidRootPart']['Position'])['Unit'];
+			local behindPosition = targetPosition - (direction * DistanceTeleport);
+			character:SetPrimaryPartCFrame(CFrame.new(behindPosition));
+		end
+	end
+	local function playDamageSound()
+		local sound = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\122\77\21\43\77", "\69\41\34\96"));
+		sound['SoundId'] = soundID;
+		sound['Parent'] = game['SoundService'];
+		sound:Play();
+	end
+	local function boostSpeed()
+		humanoid['WalkSpeed'] = originalWalkSpeed * SpeedTeleport;
+		wait(3 - 2);
+		humanoid['WalkSpeed'] = originalWalkSpeed;
+	end
+	knocked['Changed']:Connect(function()
+		if (knocked['Value'] == true) then
+			knocked['Value'] = false;
+		end
+	end);
+	humanoid['HealthChanged']:Connect(function()
+		if (humanoid['Health'] < humanoid['MaxHealth']) then
+			local nearestPlayer = findNearestPlayer();
+			if nearestPlayer then
+				teleportBehindPlayer(nearestPlayer);
+			end
+			playDamageSound();
+			boostSpeed();
+		end
+	end);
+end);
+Test1.CreateLabel(LUAOBFUSACTOR_DECRYPT_STR_0("\175\192\197\3\18\63\252\206\214\14\7\107\190\218\151\47\26\62\191\215\222\28\7\20\145\198\218\74\13\37\252\199\222\25\1\36\174\199\153", "\75\220\163\183\106\98"));
